@@ -20,4 +20,4 @@
   
   ## fonctions disponnibles
     | ```function user_has_role (string $role)``` | défini si l'utilisateur possède le role fourni en paramètre                          | $role (string) : nom machine du role à vérifier | booléen |
-    | ```function allowed_to_see_admin ()```      | retourne vrai si l'utilisateur à l'autorisation d'accès à l'administration wordpress | -                                                  | booléen |
+    | ```function allowed_to_see_admin ()```      | retourne vrai si l'utilisateur à l'autorisation d'accès à l'administration wordpress | -                                               | booléen |
