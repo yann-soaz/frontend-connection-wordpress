@@ -29,7 +29,7 @@ add_action( 'admin_init', 'block_wp_admin' );
 
 function block_wp_admin() {
   $allowed = allowed_to_see_admin();
-  if ( (is_admin() && ! current_user_can( 'administrator' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX) ) || !$allowed ) {
+  if ( (!is_admin() && ! current_user_can( 'administrator' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX) ) || !$allowed ) {
     wp_safe_redirect( home_url() );
     exit;
   }
