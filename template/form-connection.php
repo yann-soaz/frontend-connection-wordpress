@@ -1,8 +1,7 @@
-<section class="tab-content container" id="login-content">
-  <div class="tab-pane fade show active row" id="login" role="tabpanel" aria-labelledby="login-tab">
-    <?php include $ys_connection_dir.'/template/form-login.php'; ?>
-  </div>
-  <div class="tab-pane fade row" id="subscribe" role="tabpanel" aria-labelledby="subscribe-tab">
-    <?php include $ys_connection_dir.'/template/form-subscribe.php'; ?>
-  </div>
+<?php $ys_options = get_option( 'ys_connection' ); ?>
+<section id="login-content">
+  <?php include $ys_connection_dir.'/template/form-login.php'; ?>
+  <?php if (!empty($ys_options['allow_register']) && $ys_options['allow_register'] == 1) : ?>
+      <?php include $ys_connection_dir.'/template/form-subscribe.php'; ?>
+  <?php endif; ?>
 </section>

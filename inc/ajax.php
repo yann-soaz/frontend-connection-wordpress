@@ -3,24 +3,21 @@
 /**
  * active les routes ajax de connection et d'inscription
  */
-function ajax_login_init(){
+function ys_ajax_login_init(){
 
   // Enable the user with no privileges to run ajax_login() in AJAX
-  add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
-  add_action( 'wp_ajax_nopriv_ajaxsubscribe', 'ajax_suscribe' );
+  add_action( 'wp_ajax_nopriv_yslogin', 'ys_login' );
+  add_action( 'wp_ajax_nopriv_yssubscribe', 'ys_suscribe' );
 }
-add_action('init', 'ajax_login_init');
+add_action('init', 'ys_ajax_login_init');
 
 
 /**
  * fonction de la route ajax de connection
  */
-function ajax_login(){
+function ys_login(){
+  check_ajax_referer( 'ys-login-nonce', 'security' );
 
-  // First check the nonce, if it fails the function will break
-  check_ajax_referer( 'ajax-login-nonce', 'security' );
-
-  // Nonce is checked, get the POST data and sign user on
   $info = array();
   $info['user_login'] = $_POST['user_email'];
   $info['user_password'] = $_POST['user_password'];
@@ -43,22 +40,29 @@ function ajax_login(){
 /**
  * fonction de la route ajax d'inscription
  */
-function ajax_suscribe() {
-  // First check the nonce, if it fails the function will break
-  check_ajax_referer( 'ajax-subscribe-nonce', 'security' );
+function ys_suscribe() {
+
+  check_ajax_referer( 'ys-subscribe-nonce', 'security' );
+  
   if ($_POST['user_password'] == $_POST['user_pass_confirm']) {
+    $ys_options = get_option( 'ys_connection' );
     $info = array();
-    $info['role'] = $_POST['user_role'];
+    $info['role'] = (!empty($ys_options['role_created'])) ? $ys_options['role_created'] : 'subscriber';
     $info['user_email'] = $_POST['user_email'];
     $info['user_pass'] = $_POST['user_password'];
     $info['user_login'] = explode('@', $_POST['user_email'])[0];
-  
-    $registration = wp_insert_user( $info );
-    if ( is_wp_error($registration) ){
-        echo json_encode(array('respont'=>false, 'message'=>'Nous rencontrons actuellement une erreur, merci de réessayer plus tard.', 'code' => $registration->get_error_message()));
+    
+    if (filter_var($info['user_email'], FILTER_VALIDATE_EMAIL)) {
+      $registration = wp_insert_user( $info );
+      if ( is_wp_error($registration) ){
+          echo json_encode(array('respont'=>false, 'message'=>'Nous rencontrons actuellement une erreur, merci de réessayer plus tard.', 'code' => $registration->get_error_message()));
+      } else {
+          echo json_encode(array('respont'=>true, 'message'=>'Votre compte à été créé avec succès. Vous pouvez désormais vous connecter avec les identifiants créés.'));
+      }
     } else {
-        echo json_encode(array('respont'=>true, 'message'=>'Votre compte à été créé avec succès. Vous pouvez désormais vous connecter avec les identifiants créés.'));
+      echo json_encode(array('respont'=>false, 'message'=>'L\'adresse de courriel n\'est pas valide.'));
     }
+
   } else {
     echo json_encode(array('respont'=>false, 'message'=>'Les mots de passe ne correspondent pas.'));
 
@@ -95,7 +99,10 @@ add_filter('authenticate', function($user, $email, $password){
 
       //Check if user exists in WordPress database
       $user = get_user_by('email', $email);
-
+      if (!$user) {
+        $user = get_user_by('login', $email);
+      }
+ 
       //bad email
       if(!$user){
           $error = new WP_Error();

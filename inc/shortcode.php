@@ -19,7 +19,7 @@ function login_form(){
  * Enregistrement du shortcode [login /] pour affichage des formulaires de connection
  */
 function register_shortcodes(){
-  add_shortcode('login', 'login_form');
+  add_shortcode('ys_login', 'login_form');
 }
 add_action( 'init', 'register_shortcodes'); 
 
@@ -35,9 +35,9 @@ function pre_process_shortcode() {
     $regex = get_shortcode_regex();
     preg_match_all('/'.$regex.'/',$post->post_content,$matches);
     if (!empty($matches[2]) && in_array('login',$matches[2]) && is_user_logged_in()) {
-      $options = get_option( 'ys_connection' );
-      if (!empty($options['redirect_url'])) {
-        header('location: '.$options['redirect_url']);
+      $ys_options = get_option( 'ys_connection' );
+      if (!empty($ys_options['redirect_url'])) {
+        header('location: '.$ys_options['redirect_url']);
       } else {
         header('location: '.site_url());
       }
