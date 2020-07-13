@@ -1,0 +1,67 @@
+#front-end-profil .alert {
+  position:fixed;
+  top:10px;
+  left:50%;
+  max-width:90%;
+  animation-name: alertUser;
+  z-index: 100000;
+}
+.alert {
+  color: white;
+  padding:15px 30px 15px 15px;
+  margin: 10px 0;
+  position:relative;
+  animation-name: alert;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.alert-danger { background-color: #dd5555;}
+.alert-success { background-color: #49a049;}
+
+.alert span {
+  cursor: pointer;
+  position:absolute;
+  top:50%;
+  right: 5px;
+  transform:translateY(-50%);
+  font-size:30px;
+}
+
+@keyframes alert {
+  from {
+    padding:0;
+    margin:0;
+    opacity:0;
+    transform: translateY(-50%);
+  } to {
+    padding:15px 30px 15px 15px;
+    margin:10px 0;
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes alertUser {
+  from {
+    padding:0;
+    margin:0;
+    opacity:0;
+    transform: translate(-50%, -50%);
+  } to {
+    padding:15px 30px 15px 15px;
+    margin:10px 0;
+    opacity:1;
+    transform: translate(-50%, 0);
+  }
+}
+
+#login-front-form.loading, #subscribe-front-form.loading {
+  opacity: .8;
+  pointer-events: none;
+}
+#login-front-form.loading:before, #subscribe-front-form.loading:before {
+  display:block;
+  text-align:center;
+  content: 'Chargement...';
+}

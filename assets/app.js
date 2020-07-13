@@ -20,9 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (formLogin) {
     formLogin.addEventListener('submit', function (e) {
       e.preventDefault();
+      formLogin.classList.add('loading');
       let datasToSend = getLoginFormValue(this, 'login');
       ys_ajax_call(datasToSend, function (json) {
-        let status = 'alert';
+        let status = 'danger';
         if (json.respont) {
           status = 'success';
           setTimeout(function () {
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }, 3000);
         }
         alert(formLogin, json.message, status);
+        formLogin.classList.remove('loading');
       });
     })
   }
@@ -37,14 +39,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (formSubscribe) {
     formSubscribe.addEventListener('submit', function (e) {
       e.preventDefault();
+      formSubscribe.classList.add('loading');
       let datasToSend = getLoginFormValue(this, 'subscribe');
       ys_ajax_call(datasToSend, function (json) {
-          let status = 'alert';
+          let status = 'danger';
           if (json.respont) {
             status = 'success';
           }
           alert(formSubscribe, json.message, status);
-      });
+          formSubscribe.classList.remove('loading');
+        });
     })
   }
   
@@ -102,17 +106,30 @@ function ys_ajax_call(data, callback) {
  * @param {string} status 
  */
 function alert (parent, message, status) {
-  const alert = '<div class="alert alert-'+status+' alert-dismissible fade show" role="alert">'
-    + message
-    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
-      +'<span aria-hidden="true">&times;</span>'
-    +'</button>'
-  +'</div>';
+  const alert = constructAlert(status, message);
   if (parent) {
     var oldAlert = parent.querySelector('.alert');
     if (oldAlert) {
       oldAlert.remove();
     }
-    parent.innerHTML = alert+parent.innerHTML;
+    parent.prepend(alert);
   }
+}
+
+/**
+ * construit le html de l'alerte
+ * @param {string} status class de l'élément
+ * @param {string} message message à afficher
+ */
+function constructAlert (status, message) {
+  let alert = document.createElement('div');
+  alert.className = 'alert alert-'+status;
+  alert.innerHTML = message;
+  var btn = document.createElement('span');
+  btn.innerHTML = '&times;';
+  btn.addEventListener('click', function () {
+    this.parentElement.remove();
+  })
+  alert.append(btn);
+  return alert;
 }

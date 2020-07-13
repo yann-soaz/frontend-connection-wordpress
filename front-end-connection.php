@@ -48,7 +48,7 @@ function ys_frontend_connection_uninstall () {
   delete_option('ys_connection');
 }
 
-register_uninstall_hook( __FILE__, 'ys_frontend_connection_uninstall' );
+register_deactivation_hook( __FILE__, 'ys_frontend_connection_uninstall' );
 
 // page d'administration
 include 'inc/settings.php';

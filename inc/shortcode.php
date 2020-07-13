@@ -11,6 +11,11 @@ function login_form(){
     include $ys_connection_dir.'/template/form-connection.php';
     $return = ob_get_contents();
     ob_clean();
+  } else {
+    ob_start();
+    include $ys_connection_dir.'/template/form-profil.php';
+    $return = ob_get_contents();
+    ob_clean();
   }
   return $return;
 }
@@ -29,19 +34,19 @@ add_action( 'init', 'register_shortcodes');
  * vérifie si le code de connection est disponnible dans la page, et si l'utilisateur est connecté.
  * si oui : redirection
  */
-function pre_process_shortcode() {
-  global $post;
-  if (!empty($post->post_content)) {
-    $regex = get_shortcode_regex();
-    preg_match_all('/'.$regex.'/',$post->post_content,$matches);
-    if (!empty($matches[2]) && in_array('login',$matches[2]) && is_user_logged_in()) {
-      $ys_options = get_option( 'ys_connection' );
-      if (!empty($ys_options['redirect_url'])) {
-        header('location: '.$ys_options['redirect_url']);
-      } else {
-        header('location: '.site_url());
-      }
-    }
-  }
-}
-add_action('template_redirect','pre_process_shortcode',1);
+// function pre_process_shortcode() {
+//   global $post;
+//   if (!empty($post->post_content)) {
+//     $regex = get_shortcode_regex();
+//     preg_match_all('/'.$regex.'/',$post->post_content,$matches);
+//     if (!empty($matches[2]) && in_array('login',$matches[2]) && is_user_logged_in()) {
+//       $ys_options = get_option( 'ys_connection' );
+//       if (!empty($ys_options['redirect_url'])) {
+//         header('location: '.$ys_options['redirect_url']);
+//       } else {
+//         header('location: '.site_url());
+//       }
+//     }
+//   }
+// }
+// add_action('template_redirect','pre_process_shortcode',1);
