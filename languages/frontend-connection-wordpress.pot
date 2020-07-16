@@ -1,0 +1,215 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Loco Demo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-16 13:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: fr_FR\n"
+"X-Generator: Loco https://localise.biz/"
+
+msgid "Adresse email"
+msgstr ""
+
+msgid "Réinitialiser le mot de passe"
+msgstr ""
+
+msgid "Annuler"
+msgstr ""
+
+msgid "Bonjour,"
+msgstr ""
+
+msgid ""
+"Vous recevez ce mail car vous avez demandé la réinitialisation de votre mot "
+"de passe."
+msgstr ""
+
+msgid ""
+"Si vous n'êtes pas à l'origine de la demande, ignorez ce message, dans le "
+"cas contraire, veuillez cliquer sur le lien ci-dessous pour choisir un "
+"nouveau mot de passe."
+msgstr ""
+
+msgid "Réinitialiser votre mot de passe"
+msgstr ""
+
+msgid "Connexion impossible, mauvais mot de passe ou mauvaise adresse mail."
+msgstr ""
+
+msgid "Bienvenu !"
+msgstr ""
+
+msgid "Vous n'avez pas renseigné tout les champs."
+msgstr ""
+
+msgid "Cette adresse de courriel est déjà associée à un compte utilisateur."
+msgstr ""
+
+msgid "Nous rencontrons actuellement une erreur, merci de réessayer plus tard."
+msgstr ""
+
+msgid ""
+"Votre compte à été créé avec succès. Vous pouvez désormais vous connecter "
+"avec les identifiants créés."
+msgstr ""
+
+msgid "L'adresse email n'est pas valide."
+msgstr ""
+
+msgid "Les mots de passe ne correspondent pas."
+msgstr ""
+
+msgid "L'adresse email est obligatoire."
+msgstr ""
+
+msgid "Error, duplicate 1: L'adresse email n'est pas valide."
+msgstr ""
+
+msgid "Nous n'avons pas été en mesure de retrouver cet utilisateur."
+msgstr ""
+
+msgid "Réinitialisation de votre mot de passe"
+msgstr ""
+
+msgid ""
+"Un email vient de vous être renvoyé afin de vous permettre de changer de mot "
+"de passe."
+msgstr ""
+
+msgid ""
+"Une erreur à été détectée lors de l'envoi du mail, veuillez ressayer plus "
+"tard."
+msgstr ""
+
+msgid ""
+"Impossible de réinitialiser le mot de passe, le lien n'est peut-être plus "
+"valide."
+msgstr ""
+
+msgid "Nous avons rencontré une erreur lors de la mise à jour du mot de passe."
+msgstr ""
+
+msgid "Votre mot de passe à bien été modifié"
+msgstr ""
+
+msgid "Nous rencontrons actuellement une erreur, veuillez réessayer plus tard."
+msgstr ""
+
+msgid "Votre profil à bien été mis à jour."
+msgstr ""
+
+msgid "Le mot de passe ou l'adresse email ne sont pas valide !"
+msgstr ""
+
+msgid "Options de connection"
+msgstr ""
+
+msgid "Role des utilisateurs à l'inscription :"
+msgstr ""
+
+msgid "Autoriser l'accès à l'administration :"
+msgstr ""
+
+msgid "Paramètres avancés"
+msgstr ""
+
+msgid "Page de connexion"
+msgstr ""
+
+msgid "Url de redirection"
+msgstr ""
+
+msgid "Inscriptions permises"
+msgstr ""
+
+msgid "Cacher l'administration"
+msgstr ""
+
+msgid "Paramètres de base"
+msgstr ""
+
+msgid "Définissez les options du module de connexion :"
+msgstr ""
+
+msgid "Sélectionnez les options avancées :"
+msgstr ""
+
+msgid ""
+"Cache l'administration a ceux qui n'ont pas le rôle administrateur ou l'un "
+"des rôles sélectionnés dans les options avancées."
+msgstr ""
+
+msgid "Autorise la création de comptes utilisateurs sur le formulaire"
+msgstr ""
+
+msgid "Accueil"
+msgstr ""
+
+msgid ""
+"Liste des rôles autorisés à accéder a l'administration (si la case limiter "
+"l'accès à l'administration est cochée)"
+msgstr ""
+
+msgid ""
+"Role donné aux utilisateurs lors de leur inscription en front-end (si "
+"autorisée)"
+msgstr ""
+
+msgid "Mot de passe oublié"
+msgstr ""
+
+msgid "Créer un compte"
+msgstr ""
+
+msgid "Mot de passe"
+msgstr ""
+
+msgid "Adresse email ou nom d'utilisateur"
+msgstr ""
+
+msgid "se connecter"
+msgstr ""
+
+msgid "Nom d'utilisateur"
+msgstr ""
+
+msgid "Modifier le mot de passe"
+msgstr ""
+
+msgid "Nouveau mot de passe"
+msgstr ""
+
+msgid "Confirmation du nouveau mot de passe"
+msgstr ""
+
+msgid "Nom"
+msgstr ""
+
+msgid "Prénom"
+msgstr ""
+
+msgid "email"
+msgstr ""
+
+msgid "Site web"
+msgstr ""
+
+msgid "Enregistrer"
+msgstr ""
+
+msgid "Supprimer mon compte"
+msgstr ""
+
+msgid "Se déconnecter"
+msgstr ""
+
+msgid "Je créé mon compte"
+msgstr ""

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Front-end Connection
- * Plugin URI: http://www.mywebsite.com/my-first-plugin
+ * Plugin URI:
  * Description: Plugin to ennable front-end connection for users.
  * Version: 1.0
  * Author: Yann-Soaz

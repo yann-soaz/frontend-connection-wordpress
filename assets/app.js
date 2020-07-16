@@ -16,6 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
+  let returnConnectLink = document.getElementById('ys-return-connect');
+  if (returnConnectLink) {
+    returnConnectLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      showConnection();
+    })
+  }
+
+  let forgetLink = document.getElementById('ys-forgot-pass');
+  if (forgetLink) {
+    forgetLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      showForget();
+    })
+  }
+
   let formLogin = document.getElementById('login-front-form');
   if (formLogin) {
     formLogin.addEventListener('submit', function (e) {
@@ -51,17 +67,67 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     })
   }
+  let formForgot = document.getElementById('forget-front-form');
+  if (formForgot) {
+    formForgot.addEventListener('submit', function (e) {
+      e.preventDefault();
+      formForgot.classList.add('loading');
+      let datasToSend = getLoginFormValue(this, 'forget');
+      ys_ajax_call(datasToSend, function (json) {
+          let status = 'danger';
+          if (json.respont) {
+            status = 'success';
+          }
+          alert(formForgot, json.message, status);
+          formForgot.classList.remove('loading');
+        });
+    })
+  }
   
 })
 
 
+function showForget () {
+  let loginForm = document.getElementById('login-front-form');
+  if (loginForm) {
+    loginForm.style.display = 'none';
+  }
+  let subscribeForm = document.getElementById('subscribe-front-form');
+  if (subscribeForm) {
+    subscribeForm.style.display = 'none';
+  }
+  let forgotForm = document.getElementById('forget-front-form');
+  if (forgotForm) {
+    forgotForm.style.display = 'block';
+  }
+}
 function showConnection () {
-  document.getElementById('login-front-form').style.display = 'block';
-  document.getElementById('subscribe-front-form').style.display = 'none';
+  let loginForm = document.getElementById('login-front-form');
+  if (loginForm) {
+    loginForm.style.display = 'block';
+  }
+  let subscribeForm = document.getElementById('subscribe-front-form');
+  if (subscribeForm) {
+    subscribeForm.style.display = 'none';
+  }
+  let forgotForm = document.getElementById('forget-front-form');
+  if (forgotForm) {
+    forgotForm.style.display = 'none';
+  }
 }
 function showSubscription () {
-  document.getElementById('login-front-form').style.display = 'none';
-  document.getElementById('subscribe-front-form').style.display = 'block';
+  let loginForm = document.getElementById('login-front-form');
+  if (loginForm) {
+    loginForm.style.display = 'none';
+  }
+  let subscribeForm = document.getElementById('subscribe-front-form');
+  if (subscribeForm) {
+    subscribeForm.style.display = 'block';
+  }
+  let forgotForm = document.getElementById('forget-front-form');
+  if (forgotForm) {
+    forgotForm.style.display = 'none';
+  }
 }
 
 
@@ -72,16 +138,28 @@ function showSubscription () {
  */
 function getLoginFormValue (form, context) {
   let values = new FormData();
+  switch (context) {
+    case 'subscribe':
+      values.append('user_pass_confirm', form.querySelector('.user_pass_confirm').value);
+      values.append('action', 'yssubscribe');
+      values.append('security', document.getElementById('ys-subscribe').value);
+    break;
+    case 'forget' :
+      values.append('action', 'yspassword');
+      values.append('security', document.getElementById('ys-forget').value);
+    break;
+    default:
+      values.append('action', 'yslogin');
+      values.append('security', document.getElementById('ys-login').value);
+    break;
+  }
   if (context == 'subscribe') {
-    values.append('user_pass_confirm', form.querySelector('.user_pass_confirm').value);
-    values.append('action', 'yssubscribe');
-    values.append('security', document.getElementById('ys-subscribe').value);
   } else {
-    values.append('action', 'yslogin');
-    values.append('security', document.getElementById('ys-login').value);
   }
   values.append('user_email', form.querySelector('.user_mail').value);
-  values.append('user_password', form.querySelector('.user_pass').value);
+  if (context != 'forget') {
+    values.append('user_password', form.querySelector('.user_pass').value);
+  }
   return values;
 }
 

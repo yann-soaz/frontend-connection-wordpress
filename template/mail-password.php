@@ -16,9 +16,9 @@
       </tr>
       <tr>
         <td style="text-align: center">
-            <p>Bonjour,</p>
-            <p>Vous recevez ce mail car vous avez demandé la réinitialisation de votre mot de passe.</p>
-            <p>Si vous n'êtes pas à l'origine de la demande, ignorez ce message, dans le cas contraire, veuillez cliquer sur le lien ci-dessous pour choisir un nouveau mot de passe.</p>
+            <p><?= __('Bonjour,') ?></p>
+            <p><?= __('Vous recevez ce mail car vous avez demandé la réinitialisation de votre mot de passe.') ?></p>
+            <p><?= __('Si vous n\'êtes pas à l\'origine de la demande, ignorez ce message, dans le cas contraire, veuillez cliquer sur le lien ci-dessous pour choisir un nouveau mot de passe.') ?></p>
         </td>
       </tr>
       <tr>
@@ -31,7 +31,7 @@
             $url = home_url();
           }
           ?>
-          <a href="<?= $url.'?token='.$token ?>" style="display:inline-block; border-radius:4px; padding: 10px 20px; background-color: #333333; color: #f3f3f3">Réinitialiser votre mot de passe</a>
+          <a href="<?= $url.'?token='.$token.'&login='.$user->user_login ?>" style="display:inline-block; border-radius:4px; padding: 10px 20px; background-color: #333333; color: #f3f3f3; display:inline-block; text-decoration:none;"><?= __('Réinitialiser votre mot de passe') ?></a>
         </td>
       </tr>
     </table>

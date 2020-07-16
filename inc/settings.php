@@ -35,7 +35,7 @@ class YS_Login_Settings {
         $this->options = get_option( 'ys_connection' );
         ?>
         <div class="wrap">
-            <h1>Options de connections</h1>
+            <h1><?= __('Options de connection') ?></h1>
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -60,14 +60,14 @@ class YS_Login_Settings {
 
         add_settings_section(
             'ys-connection-settings-main', // ID
-            'Paramètres de base', // Title
+            __('Paramètres de base'), // Title
             array( $this, 'print_section_info' ), // Callback
             'ys-connection-admin' // Page
         );  
 
         add_settings_field(
             'hide_admin', // ID
-            'Cacher l\'administration', // Title 
+            __('Cacher l\'administration'), // Title 
             array( $this, 'hide_admin_callback' ), // Callback
             'ys-connection-admin', // Page
             'ys-connection-settings-main' // Section           
@@ -75,7 +75,7 @@ class YS_Login_Settings {
 
         add_settings_field(
             'allow_register', 
-            'Inscription permises', 
+            __('Inscriptions permises'), 
             array( $this, 'allow_register_callback' ), 
             'ys-connection-admin', 
             'ys-connection-settings-main'
@@ -83,7 +83,7 @@ class YS_Login_Settings {
 
         add_settings_field(
             'redirect_url', 
-            'Url de redirection', 
+            __('Url de redirection'), 
             array( $this, 'redirect_url_callback' ), 
             'ys-connection-admin', 
             'ys-connection-settings-main'
@@ -91,7 +91,7 @@ class YS_Login_Settings {
 
         add_settings_field(
             'connection_url', 
-            'Page de connection', 
+            __('Page de connection'), 
             array( $this, 'connection_url_callback' ), 
             'ys-connection-admin', 
             'ys-connection-settings-main'
@@ -99,14 +99,14 @@ class YS_Login_Settings {
 
         add_settings_section(
             'ys-connection-advanced', // ID
-            'Paramètres avancés', // Title
+            __('Paramètres avancés'), // Title
             array( $this, 'print_advanced_info' ), // Callback
             'ys-connection-admin' // Page
         );  
 
         add_settings_field(
             'allow_admin', 
-            'Autoriser l\'accès à l\'administration :', 
+            __('Autoriser l\'accès à l\'administration :'), 
             array( $this, 'allow_admin_for_callback' ), 
             'ys-connection-admin', 
             'ys-connection-advanced'
@@ -114,7 +114,7 @@ class YS_Login_Settings {
 
         add_settings_field(
             'role_created', 
-            'Role des utilisateurs à l\'inscription :', 
+            __('Role des utilisateurs à l\'inscription :'), 
             array( $this, 'role_created_callback' ), 
             'ys-connection-admin', 
             'ys-connection-advanced'
@@ -152,14 +152,14 @@ class YS_Login_Settings {
      * Print the Section text
      */
     public function print_section_info() {
-        print 'définissez les options du module de connection :';
+        print __('Définissez les options du module de connection :');
     }
 
     /** 
      * Print the Section text
      */
     public function print_advanced_info() {
-        print 'Selectionnez les options avancés :';
+        print __('Sélectionnez les options avancées :');
     }
 
     /** 
@@ -167,7 +167,7 @@ class YS_Login_Settings {
      */
     public function hide_admin_callback() {
         printf(
-            '<input type="checkbox" id="hide_admin" value="1" name="ys_connection[hide_admin]" %s /><p class="description">Cache l\'administration a ceux qui n\'ont pas le rôle administrateur ou l\'un des rôles selectionnés dans les options avancées.</p>',
+            '<input type="checkbox" id="hide_admin" value="1" name="ys_connection[hide_admin]" %s /><p class="description">'.__('Cache l\'administration a ceux qui n\'ont pas le rôle administrateur ou l\'un des rôles sélectionnés dans les options avancées.').'</p>',
             ( $this->options['hide_admin'] == 1 ) ? 'checked' : ''
         );
     }
@@ -177,7 +177,7 @@ class YS_Login_Settings {
      */
     public function allow_register_callback() {
         printf(
-            '<input type="checkbox" id="allow_register" value="1" name="ys_connection[allow_register]" %s /><p class="description">Autorise la création de comptes utilisateurs sur le formulaire</p>',
+            '<input type="checkbox" id="allow_register" value="1" name="ys_connection[allow_register]" %s /><p class="description">'.__('Autorise la création de comptes utilisateurs sur le formulaire').'</p>',
             ( $this->options['allow_register'] == 1 ) ? 'checked' : ''
         );
     }
@@ -189,7 +189,7 @@ class YS_Login_Settings {
         $pages = get_pages();
         $home = get_option('siteurl');
         print '<select name="ys_connection[connection_url]" id="connection_url">';
-        print '<option '.((isset($this->options['connection_url']) && $this->options['connection_url'] == $home) ? 'selected' : '').' value="'.$home.'">Accueil</option>';
+        print '<option '.((isset($this->options['connection_url']) && $this->options['connection_url'] == $home) ? 'selected' : '').' value="'.$home.'">'.__('Accueil').'</option>';
         foreach ( $pages as $page ) {
             $link = get_page_link( $page->ID );
             $option = '<option '.((isset($this->options['connection_url']) && $this->options['connection_url'] == $link) ? 'selected' : '').' value="' . $link . '">';
@@ -207,7 +207,7 @@ class YS_Login_Settings {
         $pages = get_pages();
         $home = get_option('siteurl');
         print '<select name="ys_connection[redirect_url]" id="redirect_url">';
-        print '<option '.((isset($this->options['redirect_url']) && $this->options['redirect_url'] == $home) ? 'selected' : '').' value="'.$home.'">Accueil</option>';
+        print '<option '.((isset($this->options['redirect_url']) && $this->options['redirect_url'] == $home) ? 'selected' : '').' value="'.$home.'">'.__('Accueil').'</option>';
         foreach ( $pages as $page ) {
             $link = get_page_link( $page->ID );
             $option = '<option '.((isset($this->options['redirect_url']) && $this->options['redirect_url'] == $link) ? 'selected' : '').' value="' . $link . '">';
@@ -225,7 +225,7 @@ class YS_Login_Settings {
         foreach ($this->get_roles() as $name => $role) {
             print '<label><input type="checkbox" id="allow_'.$role.'" name="ys_connection[allow_admin][]" value="'.$name.'" '.((!empty($this->options['allow_admin']) && in_array($name, $this->options['allow_admin'])) ? 'checked' : '').' />'.$role.'</label><br/>';
         }
-        print '<p class="description" id="tagline-description">Liste des rôles autorisés à accéder a l\'administration (si la case limiter l\'accès à l\'administration est cochée)</p>';
+        print '<p class="description" id="tagline-description">'.__('Liste des rôles autorisés à accéder a l\'administration (si la case limiter l\'accès à l\'administration est cochée)').'</p>';
     }
 
     /** 
@@ -235,7 +235,7 @@ class YS_Login_Settings {
         foreach ($this->get_roles() as $name => $role) {
             print '<label><input type="radio" id="create_'.$role.'" name="ys_connection[role_created]" value="'.$name.'" '.((!empty($this->options['role_created']) && $this->options['role_created'] == $name) ? 'checked' : '').' />'.$role.'</label><br/>';
         }
-        print '<p class="description" id="tagline-description">Role donné aux utilisateurs lros de leur insciption en front-end (si autorisée)</p>';
+        print '<p class="description" id="tagline-description">'.__('Role donné aux utilisateurs lors de leur inscription en front-end (si autorisée)').'</p>';
     }
 
     /** 

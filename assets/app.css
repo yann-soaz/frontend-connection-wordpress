@@ -56,11 +56,17 @@
   }
 }
 
-#login-front-form.loading, #subscribe-front-form.loading {
+#login-front-form.loading, 
+#forget-front-form.loading,
+#reset-front-form.loading,
+#subscribe-front-form.loading {
   opacity: .8;
   pointer-events: none;
 }
-#login-front-form.loading:before, #subscribe-front-form.loading:before {
+#login-front-form.loading:before, 
+#forget-front-form.loading:before,
+#reset-front-form.loading:before,
+#subscribe-front-form.loading:before {
   display:block;
   text-align:center;
   content: 'Chargement...';
